@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "Perfil do Usuário / Técnico SST",
+      "description": "Dados do usuário autenticado no sistema de vistorias",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID do usuário" },
+        "email": { "type": "string", "description": "E-mail do técnico/consultor" },
+        "nome": { "type": "string", "description": "Nome completo do técnico" },
+        "cargo": { "type": "string", "description": "Cargo ou especialidade SST" },
+        "registro": { "type": "string", "description": "Registro MTE / CREA / CFT" },
+        "consultoria": { "type": "string", "description": "Nome da Consultoria SST" },
+        "telefone": { "type": "string", "description": "Telefone de contato" },
+        "role": { "type": "string", "enum": ["admin", "tecnico", "usuario"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "email"]
+    },
+    "Vistoria": {
+      "title": "Vistoria e Levantamento SST",
+      "description": "Dados completos da vistoria técnica da empresa, setores, funções, riscos e produtos químicos",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "ID único da vistoria/empresa" },
+        "userId": { "type": "string", "description": "ID do técnico proprietário da vistoria" },
+        "empresa": { "type": "object", "description": "Dados cadastrais e gerais da empresa" },
+        "setores": { "type": "array", "description": "Lista de setores e extintores avaliados" },
+        "funcoes": { "type": "array", "description": "Lista de funções e EPIs cadastrados" },
+        "riscos": { "type": "object", "description": "Matriz de riscos vinculados por função" },
+        "produtosQuimicos": { "type": "array", "description": "Inventário de produtos químicos" },
+        "produtosPorFuncao": { "type": "object", "description": "Produtos químicos vinculados por função" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "sharedWith": { "type": "array", "items": { "type": "string" }, "description": "Usuários com acesso compartilhado" }
+      },
+      "required": ["id", "userId", "empresa"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "entity": "UserProfile",
+      "description": "Documento de perfil individual do usuário"
+    },
+    "/vistorias/{vistoriaId}": {
+      "entity": "Vistoria",
+      "description": "Documentos de vistorias técnicas criadas e sincronizadas em tempo real"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "SST Sistema",
+  "description": "SST Sistema - Gerenciamento de Riscos. Vistorias técnicas, levantamento de riscos ocupacionais, PGR/GRO, PCMSO, LTCAT, LIP, AEP e eSocial com Sincronização em Nuvem e PWA.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

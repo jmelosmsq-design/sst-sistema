@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Fundo escuro com vinheta e sutil profundidade esmeralda -->
+    <radialGradient id="bgVignette" cx="50%" cy="48%" r="65%">
+      <stop offset="0%" stop-color="#0f1511"/>
+      <stop offset="45%" stop-color="#070b09"/>
+      <stop offset="100%" stop-color="#010302"/>
+    </radialGradient>
+
+    <!-- Gradiente do Verde Neon Elétrico / SST Vistoria -->
+    <linearGradient id="neonGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#26ff64"/>
+      <stop offset="50%" stop-color="#14ea54"/>
+      <stop offset="100%" stop-color="#07dc47"/>
+    </linearGradient>
+
+    <!-- Sutil brilho neon difuso atrás do símbolo -->
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feColorMatrix type="matrix" values="
+        0 0 0 0 0.08
+        0 1 0 0 0.95
+        0 0 0 0 0.35
+        0 0 0 0 0.40 0" in="blur" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Fundo do Ícone (Squircle para PWA / Mobile / Favicon / Web) -->
+  <rect width="512" height="512" rx="116" fill="url(#bgVignette)"/>
+  
+  <!-- Borda sutil do container -->
+  <rect x="2" y="2" width="508" height="508" rx="114" fill="none" stroke="#16261b" stroke-width="2" stroke-opacity="0.6"/>
+
+  <!-- Grupo Principal do Ícone (Lupa + Checkmark + Cabo) -->
+  <g filter="url(#neonGlow)">
+    <!-- 1. Anel da Lupa -->
+    <circle
+      cx="236"
+      cy="226"
+      r="108"
+      fill="none"
+      stroke="url(#neonGreen)"
+      stroke-width="38"
+    />
+
+    <!-- 2. Checkmark interno que cruza a borda superior direita -->
+    <path
+      d="M 176 222
+         L 218 264
+         L 338 144"
+      fill="none"
+      stroke="url(#neonGreen)"
+      stroke-width="38"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <!-- 3. Cabo da Lupa (Pílula arredondada alinhada a 45° com sutil espaço) -->
+    <line
+      x1="334"
+      y1="324"
+      x2="394"
+      y2="384"
+      stroke="url(#neonGreen)"
+      stroke-width="38"
+      stroke-linecap="round"
+    />
+  </g>
+</svg>
